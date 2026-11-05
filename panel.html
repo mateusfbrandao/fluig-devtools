@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/panel.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-brand">
+        <img class="topbar-logo" src="icons/icon48.png" width="20" height="20" alt="" />
+        <h1 title="Fluig devtools v1.0.0">Fluig devtools</h1>
+      </div>
+      <a class="topbar-gh" href="https://github.com/ryanpaulista/fluig-debug" target="_blank" rel="noopener noreferrer" title="Abrir repositório no GitHub" aria-label="Abrir repositório no GitHub">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="tab-bar">
+      <button id="tab-btn-processo" type="button" class="chip active">Processo</button>
+      <button id="tab-btn-formulario" type="button" class="chip">Formulário</button>
+      <button id="tab-btn-widget" type="button" class="chip">Widget</button>
+      <button id="tab-btn-dados" type="button" class="chip">Consultar Dataset</button>
+      <button id="tab-btn-rede" type="button" class="chip">Rede Fluig</button>
+      <button id="tab-btn-dump" type="button" class="chip">Dump JSON</button>
+    </div>
+
+    <div id="tab-processo" class="tab-panel">
+    <section>
+      <h2 class="visually-hidden">Processo</h2>
+      <div class="field-row">
+        <button id="btn-reload-solicitacao" type="button" class="btn-icon" title="Recarregar solicitação">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1.5 1.5v4.5h4.5"/>
+            <path d="M2.3 10a6 6 0 1 0 1.2-6.2L1.5 6"/>
+          </svg>
+        </button>
+        <span id="solicitacao-status" class="muted"></span>
+      </div>
+      <div id="solicitacao-output" class="context-body"></div>
+    </section>
+    </div>
+
+    <div id="tab-formulario" class="tab-panel" hidden>
+    <section class="workbench">
+      <h2 class="visually-hidden">Formulário</h2>
+      <div id="form-meta" class="context-body"></div>
+      <div class="field-row">
+        <div class="ac-wrap">
+          <div class="search">
+            <svg class="search-ico" viewBox="0 0 16 16" aria-hidden="true">
+              <circle cx="7" cy="7" r="4.25" />
+              <path d="M10.3 10.3 14 14" />
+            </svg>
+            <input id="read-field" type="text" placeholder="filtrar ou ler um campo" autocomplete="off" title="Filtra a lista. Enter lê o campo digitado." />
+          </div>
+          <div id="read-field-ac" class="ac-box"></div>
+        </div>
+        <button id="btn-read" type="button" class="primary">Ler</button>
+        <button id="btn-read-history" type="button">Histórico</button>
+        <button id="btn-browser-reload" type="button" class="btn-icon" title="Recarregar campos">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1.5 1.5v4.5h4.5"/>
+            <path d="M2.3 10a6 6 0 1 0 1.2-6.2L1.5 6"/>
+          </svg>
+        </button>
+        <span id="field-status" class="muted"></span>
+      </div>
+      <div id="read-output" class="out"></div>
+      <div id="read-history" class="hist"></div>
+      <div id="field-browser-body"></div>
+    </section>
+    </div>
+
+    <div id="tab-widget" class="tab-panel" hidden>
+    <section>
+      <h2 class="visually-hidden">Widget</h2>
+      <div class="field-row">
+        <div class="search">
+          <svg class="search-ico" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="7" cy="7" r="4.25" />
+            <path d="M10.3 10.3 14 14" />
+          </svg>
+          <input id="widget-filter" type="text" placeholder="filtrar por código, instanceId ou id" autocomplete="off" />
+        </div>
+        <button id="btn-widget-reload" type="button" class="btn-icon" title="Recarregar widgets da página">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1.5 1.5v4.5h4.5"/>
+            <path d="M2.3 10a6 6 0 1 0 1.2-6.2L1.5 6"/>
+          </svg>
+        </button>
+        <span id="widget-status" class="muted"></span>
+      </div>
+      <label class="ds-mask"><input type="checkbox" id="widget-opt-custom" /> Só customizados</label>
+      <div id="widget-page" class="context-body"></div>
+      <div id="widget-list" class="out"></div>
+    </section>
+    </div>
+
+    <div id="tab-dados" class="tab-panel" hidden>
+    <section>
+      <h2 class="visually-hidden">Consultar Dataset</h2>
+      <div class="field-row">
+        <input id="ds-name" type="text" list="ds-names" placeholder="nome do dataset (ex: colleague)" autocomplete="off" title="Consulta somente leitura na sessão de quem está logado" />
+        <datalist id="ds-names"></datalist>
+        <button id="btn-ds-run" type="button" class="primary">Consultar</button>
+      </div>
+      <details class="ds-more" id="ds-more">
+        <summary>Colunas e filtros</summary>
+        <div class="field-row">
+          <input id="ds-fields" type="text" placeholder="colunas, separadas por vírgula (vazio = todas)" autocomplete="off" />
+        </div>
+        <div class="field-row">
+          <input id="ds-order" type="text" placeholder="ordenação, separadas por vírgula (opcional)" autocomplete="off" />
+          <label class="ds-limit">Limite
+            <input id="ds-limit" type="number" min="1" max="300" value="50" title="Máximo de linhas devolvidas à grade" />
+          </label>
+        </div>
+        <div class="ds-filters-head">
+          <span>Filtros</span>
+          <button id="btn-ds-add" type="button">Adicionar filtro</button>
+          <button id="btn-ds-from-net" type="button">Da rede</button>
+        </div>
+        <p class="muted ds-filter-hint">Igualdade: só o valor inicial. Faixa: inicial e final diferentes. LIKE é busca parcial.</p>
+        <div id="ds-constraints"></div>
+      </details>
+      <label class="ds-mask"><input type="checkbox" id="ds-opt-mask" checked /> Mascarar dados sensíveis na grade</label>
+      <div class="toolbar">
+        <button id="btn-ds-copy" type="button">Copiar JSON</button>
+        <span id="ds-status" class="muted"></span>
+      </div>
+      <div id="ds-result" class="out"></div>
+    </section>
+    </div>
+
+    <div id="tab-rede" class="tab-panel" hidden>
+    <section>
+      <h2 class="visually-hidden">Rede Fluig</h2>
+      <div class="net-toolbar">
+        <div class="toolbar-group">
+          <button type="button" class="chip active" data-net-kind="all">Todas</button>
+          <button type="button" class="chip" data-net-kind="dataset">Datasets</button>
+          <button type="button" class="chip" data-net-kind="rest">REST</button>
+          <button type="button" class="chip" data-net-kind="error">Erros</button>
+        </div>
+        <button id="btn-net-reload" type="button" class="btn-icon" title="Sincronizar com histórico da aba Network (HAR)">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1.5 1.5v4.5h4.5"/>
+            <path d="M2.3 10a6 6 0 1 0 1.2-6.2L1.5 6"/>
+          </svg>
+        </button>
+        <button id="btn-net-clear" type="button" title="Limpar lista de chamadas">Limpar</button>
+        <span id="net-monitor-status" class="muted" style="font-size:11px; margin-left:auto;"></span>
+      </div>
+      <div class="dump-filter-row" style="margin: 8px 0;">
+        <div class="search">
+          <svg class="search-ico" viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="7" cy="7" r="4.25" />
+            <path d="M10.3 10.3 14 14" />
+          </svg>
+          <input id="net-filter" type="text" placeholder="filtrar por dataset, URL, método ou constraint" autocomplete="off" />
+        </div>
+      </div>
+      <div class="net-options-row">
+        <label><input type="checkbox" id="net-opt-hide-noise" checked /> Ocultar ruído interno do portal</label>
+        <label><input type="checkbox" id="net-opt-preserve" checked /> Preservar ao navegar</label>
+      </div>
+      <div class="dg-grid-wrap net-monitor-wrap">
+        <div id="net-monitor-list" class="net-monitor-list"></div>
+        <div id="net-monitor-inspector" class="dg-inspector"></div>
+      </div>
+    </section>
+    </div>
+
+    <div id="tab-dump" class="tab-panel" hidden>
+    <section>
+      <h2 class="visually-hidden">Dump JSON</h2>
+      <p class="muted">JSON da página para colar numa IA. A rede só inclui chamadas feitas com o DevTools aberto.</p>
+      <fieldset class="dump-options">
+        <legend>Incluir no dump</legend>
+        <label><input type="checkbox" id="dump-opt-fields" checked /> Campos e tabelas</label>
+        <label><input type="checkbox" id="dump-opt-logs" checked /> Logs do console</label>
+        <label><input type="checkbox" id="dump-opt-context" checked /> Contexto (solicitação, usuário)</label>
+        <label><input type="checkbox" id="dump-opt-datasets" checked /> Chamadas de dataset</label>
+        <label><input type="checkbox" id="dump-opt-rest" checked /> Chamadas REST</label>
+        <label class="dump-sub"><input type="checkbox" id="dump-opt-responses" /> Incluir retornos (amostra de linhas / corpo)</label>
+        <label class="dump-sub"><input type="checkbox" id="dump-opt-noise" /> Incluir chamadas internas do portal (ruído)</label>
+        <label><input type="checkbox" id="dump-opt-compact" /> Compacto (omitir vazios, truncar textos longos)</label>
+        <label><input type="checkbox" id="dump-opt-mask" checked /> Mascarar dados sensíveis</label>
+      </fieldset>
+      <div class="toolbar" style="margin-bottom: 12px;">
+        <button id="btn-dump" type="button" class="primary">Gerar dump JSON</button>
+        <button id="btn-copy-dump" type="button">Copiar JSON</button>
+        <span id="dump-status" class="muted"></span>
+      </div>
+      <textarea id="dump-json" readonly placeholder="O JSON aparece aqui após 'Gerar dump JSON'."></textarea>
+    </section>
+    </div>
+
+    <!-- ORDEM IMPORTANTE: scripts classicos compartilham o escopo global; bridge e page-* primeiro, main por ultimo. -->
+    <script src="js/bridge.js"></script>
+    <script src="js/page-find.js"></script>
+    <script src="js/page-index.js"></script>
+    <script src="js/page-set.js"></script>
+    <script src="js/ui-utils.js"></script>
+    <script src="js/textarea-history.js"></script>
+    <script src="js/history.js"></script>
+    <script src="js/autocomplete.js"></script>
+    <script src="js/history-actions.js"></script>
+    <script src="js/read.js"></script>
+    <script src="js/set.js"></script>
+    <script src="js/dump-sanitize.js"></script>
+    <script src="js/dump-network.js"></script>
+    <script src="js/network-monitor.js"></script>
+    <script src="js/dump.js"></script>
+    <script src="js/field-browser.js"></script>
+    <script src="js/solicitacao.js"></script>
+    <script src="js/form-meta.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/dataset-inspect.js"></script>
+    <script src="js/widget-inspect.js"></script>
+    <script src="js/wiring-read.js"></script>
+    <script src="js/wiring-browser.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

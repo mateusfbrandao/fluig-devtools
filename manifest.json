@@ -1,0 +1,15 @@
+{
+   "description": "Painel no DevTools para inspecionar e manipular formulários Fluig (ler/setar campos, dump de estado). Ferramenta interna de debug.",
+   "devtools_page": "devtools.html",
+   "icons": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0dO05PeLjskwrLeQUSZPTaByWf5CrfxS+/Jhl1B7deWJPWvOGFDnQa35YEEYDyq1uLWd4D/3TpexhRXrtWmZ5K7XIylV2IWnnnd9ZjbCJVSteMvk7YHm/nwSHQopc0G5pG8IcNBY7v6axUsK9ynBNcJU0e+E2+/7X3oeEE6FosR9eX3fDTb1R9KxKbvFCs6/53aTX2nTKQfymjH8hKSuaW8OJ/CPRbIvSLWT4rmG/l4RlXjGJmsiQImXGuws0beP4CZ2EX2KNJNUhCvJAKS3muN7WAInPgNFENTwR1ZLinjtjhJ9+yvhwrW1QlYPp3m5PhGsKRb/sMQhvm+wO+PZawIDAQAB",
+   "manifest_version": 3,
+   "minimum_chrome_version": "88",
+   "name": "Fluig devtools",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0.0"
+}
